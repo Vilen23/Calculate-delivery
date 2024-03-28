@@ -1,0 +1,45 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Organisation {
+  id   String @id @default(uuid())
+  name String
+
+  pricing Pricing[]
+}
+
+enum ItemType {
+  perishable
+  nonPerishable
+}
+
+model Item {
+  id          String   @id @default(uuid())
+  type        ItemType
+  description String
+
+  pricing Pricing[]
+}
+
+model Pricing {
+  id               String @id @default(uuid())
+  zone             String
+  baseDistanceInKm Int    @default(5)
+  fixPrice         Float  @default(10)
+  kmPrice          Float
+
+  organisationId String
+  organisation   Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+
+  itemId String
+  item   Item   @relation(fields: [itemId], references: [id], onDelete: Cascade)
+
+  @@index([organisationId])
+  @@index([itemId])
+}
