@@ -13,3 +13,5 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use('/api/v1/delivery',deliveryRouter);
 
 app.listen(3000);
+
+module.exports = app ;

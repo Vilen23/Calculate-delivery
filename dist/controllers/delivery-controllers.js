@@ -18,8 +18,10 @@ const CalculateDelivery = (req, res) => __awaiter(void 0, void 0, void 0, functi
     try {
         const { zone, organisationId, totalDistance, itemType } = req.query;
         const response = calc_delivery_1.calcDeliverySchema.safeParse(req.query);
-        if (!response.success)
+        if (!response.success) {
+            console.log(response.error);
             return res.status(400).json({ error: response.error.issues[0].message });
+        }
         const pricing = yield prisma.pricing.findFirst({
             where: {
                 organisationId: organisationId,

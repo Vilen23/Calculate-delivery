@@ -9,9 +9,12 @@ const CalculateDelivery = async (req: Request, res: Response) => {
   try {
     const { zone, organisationId, totalDistance, itemType } = req.query;
     const response = calcDeliverySchema.safeParse(req.query);
-
-    if (!response.success)
+    
+    if (!response.success){
+      console.log(response.error);
       return res.status(400).json({error: response.error.issues[0].message});
+    }
+    
 
     const pricing = await prisma.pricing.findFirst({
       where: {
