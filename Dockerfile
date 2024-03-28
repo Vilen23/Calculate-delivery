@@ -1,13 +1,13 @@
-FROM node:21-alpine3.18
+FROM node:16-alpine
 
 WORKDIR /app
 
-COPY package*.json ./
-
-RUN npm install
-RUN npx prisma generate --schema=/app/prisma/schema.prisma
-
-
 COPY . .
 
-CMD ["node","dist/index.js"]
+RUN npm install
+RUN npm run build
+RUN npx prisma generate 
+
+EXPOSE 3000
+
+CMD     ["node","dist/index.js"] 
