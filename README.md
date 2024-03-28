@@ -5,9 +5,13 @@ This guide explains how to clone the repository, build the Docker image, and run
 ## Clone the Repository
 ```sh
 git clone https://github.com/Vilen23/Calculate-delivery.git
-cd Calculate-delivery.
+cd Calculate-delivery
 ```
-
+## Provide your database
+- make sure to add your db link in .env file
+```sh
+DATABASE_URL="{Your url here}"
+```
 ## Build the docker image
 ```sh
 docker build -t your-image-name .
