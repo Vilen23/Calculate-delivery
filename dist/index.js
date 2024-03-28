@@ -36,4 +36,5 @@ app.use(express_1.default.json());
 app.use((0, cors_1.default)());
 app.use('/api-docs', swagger_ui_express_1.default.serve, swagger_ui_express_1.default.setup(swaggerDocument));
 app.use('/api/v1/delivery', delivery_route_1.router);
+app.listen(3000)
 module.exports = app;
