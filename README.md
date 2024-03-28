@@ -1,6 +1,11 @@
-# Setup Guide for Running the Application with Docker
+# Setup Guide for Running the Application 
 
 This guide explains how to clone the repository, build the Docker image, and run the image to run the application.
+
+- [Running with Docker](#running-with-docker)
+- [Running without Docker](#running-without-docker)
+
+# Running With Docker
 
 ## Clone the Repository
 ```sh
@@ -24,3 +29,40 @@ docker run -p 3000:3000 your-image-name
 
 ## Note: Ensure Docker is installed on your system before proceeding.
 
+# Running Without Docker
+
+## Clone the Repo
+```sh
+git clone https://github.com/your-repo.git
+cd your-repo
+```
+
+## Instal Dependency
+```sh
+npm install
+```
+
+## Generate prisma client
+```sh
+npx prisma generate
+```
+## Add database url
+- In the .env file add your database url
+```sh
+DATABASE_URL="{Your DB url}"
+```
+## Add some data to the database
+- Make sure to add some data to the database to check the api
+
+## Start the server
+```sh
+node dist/index.js
+```
+
+## Access Swagger UI
+- Open your browser and go to http://localhost:3000/api-docs to access the Swagger UI for testing the API endpoints.
+
+## Run the Jest Tests
+```sh
+npm test
+```
